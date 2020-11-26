@@ -350,6 +350,15 @@ RC.PubSub = new (function() {
 			'flexbe_msgs/UICommand',
 			ros_command_callback);
 
+		ros_command_webstart = new ROS.Subscriber(
+			ns + 'flexbe/webstart',
+			'std_msgs/Empty',
+			UI.RuntimeControl.startBehaviorClicked);
+
+		ros_command_webstop = new ROS.Subscriber(
+			ns + 'flexbe/webstop',
+			'std_msgs/Empty',
+			UI.RuntimeControl.preemptBehaviorClicked);
 
 		// Publisher
 
