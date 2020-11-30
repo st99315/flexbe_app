@@ -206,6 +206,7 @@ UI.Panels.SelectBehavior = new (function() {
 
 			behavior_div = document.createElement("div");
 			behavior_div.setAttribute("class", "panel_select_behavior_selection_behavior");
+			behavior_div.id = m.name;
 			behavior_div.innerHTML =
 				  '<b>' + m.name + '</b><br />'
 				+ '<i>' + m.description + '</i>';
