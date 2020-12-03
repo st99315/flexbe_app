@@ -31,6 +31,30 @@
 	vertical-align: top;
 }
 
+.exbox {
+	background-color: #fff;
+	margin: 10px;
+	/* box-shadow: 2px 2px 15px #333; */
+	vertical-align: top;
+
+	position: absolute;
+	/* display: none; */
+	width: calc(66% - 25px);
+	/* padding: 5px; */
+	vertical-align: top;
+	line-height: 1.4em;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	max-height: calc(66% - 37px);
+}
+
+.box_table2 {
+	margin: 0px;
+	margin-top: 4px;
+	padding: 0px;
+	width: calc(33% - 30px);
+}
+
 #runtimecontrol h1 {
 	font-size: 12pt;
 	padding: 0 0 10px 0;
