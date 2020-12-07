@@ -36,7 +36,12 @@ fi
 
 # ready to go
 echo "Downloading nwjs..."
-curl -s -o $TEMPFILE https://dl.nwjs.io/$VERSION/nwjs-$VERSION-$OS-$ARCH.tar.gz
+
+url=https://dl.nwjs.io/$VERSION/nwjs-$VERSION-$OS-$ARCH.tar.gz
+if [ `uname -m` == "x86_64" ]; then
+	url=https://github.com/LeonardLaszlo/nw.js-armv7-binaries/releases/download/v0.23.7/nwjs-sdk-without-nacl-v0.23.7-linux-arm64.tar.gz
+fi
+curl -s -o $TEMPFILE $url
 
 echo "Unpacking..."
 tar -xzf $TEMPFILE --strip-components 1
