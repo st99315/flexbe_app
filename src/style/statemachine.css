@@ -9,7 +9,7 @@
 
 #drawing_area {
 	width: calc(66% - 25px);
-	height: calc(90% - 20px);
+	height: calc(70% - 20px);
 	padding: 0;
 	border: none;
 	background-color: #eee;

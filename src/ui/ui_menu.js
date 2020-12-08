@@ -41,8 +41,8 @@ UI.Menu = new (function() {
 		],
 		[
 			["Data Flow Graph", "dataflow", function() { UI.Statemachine.toggleDataflow(); }, "ctrl+d"],
-			["Check Behavior", "check", function() { UI.Menu.checkBehaviorClicked(); }],
-			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }]
+			["Load Behavior", "file_load", function() { UI.Menu.loadBehaviorClicked(); }],
+			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }, "ctrl+s"]
 		],
 		[
 			["Undo", "undo", function() { ActivityTracer.undo(); }, undefined],
@@ -52,11 +52,15 @@ UI.Menu = new (function() {
 		[
 			["Hide Comments", "note", function() { UI.Statemachine.toggleComments(); }, "ctrl+h"],
 			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"]
+			["Show Terminal", "title_terminal", function() { UI.Menu.terminalClicked(); }, undefined]
 		],
 		[
 			["Fade Outcomes", "outcome", function() { UI.Statemachine.toggleOutcomes(); }, "ctrl+f"],
 			["Auto-Connect", "autoconnect", function() { Tools.autoconnect(); }, "ctrl+a"],
 			["Group Selection", "group_selection", function() { Tools.groupSelection(); }, "ctrl+g"]
+		],
+		[
+			["Check Behavior", "check", function() { UI.Menu.checkBehaviorClicked(); }]
 		]
 	];
 	var button_config_rc = [
