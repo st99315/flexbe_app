@@ -51,7 +51,7 @@ UI.Menu = new (function() {
 		],
 		[
 			["Hide Comments", "note", function() { UI.Statemachine.toggleComments(); }, "ctrl+h"],
-			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"]
+			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"],
 			["Show Terminal", "title_terminal", function() { UI.Menu.terminalClicked(); }, undefined]
 		],
 		[
