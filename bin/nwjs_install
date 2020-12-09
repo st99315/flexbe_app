@@ -1,8 +1,10 @@
 #!/bin/bash -e
-cd "$( dirname "${BASH_SOURCE[0]}" )"
+
 TEMPFILE="nwjs.tar.gz"
-mkdir -p ../nwjs
-cd ../nwjs
+
+cd $HOME
+mkdir -p nwjs
+cd nwjs
 
 VERSION="v0.42.3" # verified working, to be incremented explicitly
 
@@ -27,6 +29,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 else
 	OS="linux"
 fi
+
 ARCH="x64"
 if [ `uname -m` == "x86_64" ]; then
 	ARCH="x64"
@@ -44,7 +47,6 @@ if [ `uname -m` == "aarch64" ]; then
 else
     curl -s -o $TEMPFILE $url
 fi
-
 
 echo "Unpacking..."
 tar -xzf $TEMPFILE --strip-components 1

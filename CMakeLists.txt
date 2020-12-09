@@ -32,7 +32,7 @@ add_custom_command(OUTPUT nwjs
 
 add_custom_target(nw_install DEPENDS nwjs)
 
-if(NOT ${CMAKE_CURRENT_SOURCE_DIR}/nwjs)
+if(NOT $ENV{HOME}/nwjs)
   safe_execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/bin/nwjs_install)
 endif()
 
@@ -41,6 +41,7 @@ endif()
 #############
 
 INSTALL(PROGRAMS
+    bin/nwjs_install
     bin/run_app
     bin/shortcut
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -53,11 +54,11 @@ INSTALL(DIRECTORY
     src
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
-INSTALL(DIRECTORY
-    nwjs
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-    USE_SOURCE_PERMISSIONS
-)
+# INSTALL(DIRECTORY
+#     nwjs
+#     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#     USE_SOURCE_PERMISSIONS
+# )
 install(DIRECTORY
     launch
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
