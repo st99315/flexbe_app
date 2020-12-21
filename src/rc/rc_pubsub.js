@@ -9,6 +9,7 @@ RC.PubSub = new (function() {
 	var onboard_heartbeat_listener;
 	var ros_command_listener;
 
+	var behavior_web_publisher;
 	var behavior_start_publisher;
 	var transition_command_publisher;
 	var autonomy_level_publisher;
@@ -147,6 +148,22 @@ RC.PubSub = new (function() {
 		T.logInfo('Executing received command: ' + msg.command);
 		UI.Tools.startRosCommand(msg.command);
 		T.show();
+	}
+
+	var ros_web_callback = function(msg){
+		var list = WS.Behaviorlib.getBehaviorList();
+		msg = list;
+		if (behavior_web_publisher == undefined) { T.debugWarn("ROS not initialized!"); return; }
+		behavior_web_publisher.publish({
+			data: msg.toString()
+		});
+	}
+
+	var ros_web_callbvaior = function(msg){
+		var load = document.getElementById("button_rc_load");
+		load.click();
+		var div_ = document.getElementById(msg.data);
+		div_.click();
 	}
 
 	var command_feedback_callback = function (msg) {
@@ -350,9 +367,32 @@ RC.PubSub = new (function() {
 			'flexbe_msgs/UICommand',
 			ros_command_callback);
 
+		ros_command_webstart = new ROS.Subscriber(
+			ns + 'flexbe/webstart',
+			'std_msgs/Empty',
+			UI.RuntimeControl.startBehaviorClicked);
+
+		ros_command_webstop = new ROS.Subscriber(
+			ns + 'flexbe/webstop',
+			'std_msgs/Empty',
+			UI.RuntimeControl.preemptBehaviorClicked);
+
+		ros_bevavior_request = new ROS.Subscriber(
+			ns + 'flexbe/web/bevavior',
+			'std_msgs/Empty',
+			ros_web_callback);
+
+		ros_call_bevavior = new ROS.Subscriber(
+			ns + 'flexbe/web/call_bevavior',
+			'std_msgs/String',
+			ros_web_callbvaior);
 
 		// Publisher
 
+		behavior_web_publisher = new ROS.Publisher(
+			ns + 'flexbe/web/get_behavior',
+			'std_msgs/String');
+			
 		behavior_start_publisher = new ROS.Publisher(
 			ns + 'flexbe/request_behavior',
 			'flexbe_msgs/BehaviorRequest');
@@ -428,6 +468,7 @@ RC.PubSub = new (function() {
 		if (behavior_status_listener) behavior_status_listener.close();
 		if (ros_command_listener) ros_command_listener.close();
 
+		if (behavior_web_publisher) behavior_web_publisher.close();
 		if (behavior_start_publisher) behavior_start_publisher.close();
 		if (transition_command_publisher) transition_command_publisher.close();
 		if (autonomy_level_publisher) autonomy_level_publisher.close();

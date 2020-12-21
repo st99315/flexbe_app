@@ -24,7 +24,7 @@ UI.Menu = new (function() {
 		[
 			["New Behavior", "file_new", function() { UI.Menu.newBehaviorClicked(); }],
 			["Load Behavior", "file_load", function() { UI.Menu.loadBehaviorClicked(); }],
-			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }]
+			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }, "strl+s"]
 		],
 		[
 			["Edit Code", "page_edit", function() { UI.Menu.scEditClicked(); }, "ctrl+e"]
@@ -41,8 +41,8 @@ UI.Menu = new (function() {
 		],
 		[
 			["Data Flow Graph", "dataflow", function() { UI.Statemachine.toggleDataflow(); }, "ctrl+d"],
-			["Check Behavior", "check", function() { UI.Menu.checkBehaviorClicked(); }],
-			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }]
+			["Load Behavior", "file_load", function() { UI.Menu.loadBehaviorClicked(); }],
+			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }, "ctrl+s"]
 		],
 		[
 			["Undo", "undo", function() { ActivityTracer.undo(); }, undefined],
@@ -51,17 +51,46 @@ UI.Menu = new (function() {
 		],
 		[
 			["Hide Comments", "note", function() { UI.Statemachine.toggleComments(); }, "ctrl+h"],
-			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"]
+			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"],
+			["Show Terminal", "title_terminal", function() { UI.Menu.terminalClicked(); }, undefined]
 		],
 		[
 			["Fade Outcomes", "outcome", function() { UI.Statemachine.toggleOutcomes(); }, "ctrl+f"],
 			["Auto-Connect", "autoconnect", function() { Tools.autoconnect(); }, "ctrl+a"],
 			["Group Selection", "group_selection", function() { Tools.groupSelection(); }, "ctrl+g"]
+		],
+		[
+			["Check Behavior", "check", function() { UI.Menu.checkBehaviorClicked(); }]
 		]
 	];
 	var button_config_rc = [
 		[
+			["Add State", "add", function() { UI.Menu.addStateClicked(); }, "ctrl+1"],
+			["Add Behavior", "add", function() { UI.Menu.addBehaviorClicked(); }, "ctrl+2"],
+			["Add Container", "add", function() { UI.Menu.addStatemachineClicked(); }, "ctrl+3"]
+		],
+		[
+			["Data Flow Graph", "dataflow", function() { UI.Statemachine.toggleDataflow(); }, "ctrl+d"],
+			["Load Behavior", "file_load", function() { UI.Menu.loadBehaviorClicked(); }],
+			["Save Behavior", "file_save", function() { UI.Menu.saveBehaviorClicked(); }, "ctrl+s"]
+		],
+		[
+			["Undo", "undo", function() { ActivityTracer.undo(); }, undefined],
+			["Redo", "redo", function() { ActivityTracer.redo(); }, undefined],
+			["Reset", "cross", function() { ActivityTracer.resetToSave(); }]
+		],
+		[
+			["Hide Comments", "note", function() { UI.Statemachine.toggleComments(); }, "ctrl+h"],
+			["Write Comment", "note_add", function() { UI.Menu.addCommentClicked(); }, "ctrl+4"],
 			["Show Terminal", "title_terminal", function() { UI.Menu.terminalClicked(); }, undefined]
+		],
+		[
+			["Fade Outcomes", "outcome", function() { UI.Statemachine.toggleOutcomes(); }, "ctrl+f"],
+			["Auto-Connect", "autoconnect", function() { Tools.autoconnect(); }, "ctrl+a"],
+			["Group Selection", "group_selection", function() { Tools.groupSelection(); }, "ctrl+g"]
+		],
+		[
+			["Check Behavior", "check", function() { UI.Menu.checkBehaviorClicked(); }]
 		]
 	];
 	var button_config_se = [

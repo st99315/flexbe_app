@@ -8,8 +8,8 @@
 }
 
 #drawing_area {
-	width: calc(100% - 20px);
-	height: calc(100% - 20px);
+	width: calc(66% - 25px);
+	height: calc(70% - 20px);
 	padding: 0;
 	border: none;
 	background-color: #eee;

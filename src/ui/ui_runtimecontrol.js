@@ -709,6 +709,7 @@ UI.RuntimeControl = new (function() {
 	this.displayBehaviorConfiguration = function() {
 		hideDisplays();
 		document.getElementById("runtime_configuration_display").style.display = "inline";
+		document.getElementById("drawing_area").style.display = "inline-block";
 		createParameterTable();
 	}
 
@@ -729,7 +730,7 @@ UI.RuntimeControl = new (function() {
 
 	this.displayNoBehavior = function() {
 		hideDisplays();
-		document.getElementById("runtime_no_behavior_display").style.display = "inline";
+		// document.getElementById("runtime_no_behavior_display").style.display = "inline";
 		var updateHistoryDisplay = function() {
 			var historyHTML = "";
 			var currentIdx = ActivityTracer.getCurrentIndex();

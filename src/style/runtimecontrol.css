@@ -11,7 +11,7 @@
 .widebox {
 	display: inline-block;
 	background-color: #fff;
-	width: calc(66% - 25px);
+	width: calc(98% - 20px);
 	margin: 10px;
 	/*border: 1px solid black;*/
 	box-shadow: 2px 2px 15px #333;
@@ -29,6 +29,30 @@
 	box-shadow: 2px 2px 15px #333;
 	padding: 0;
 	vertical-align: top;
+}
+
+.exbox {
+	background-color: #fff;
+	margin: 10px;
+	/* box-shadow: 2px 2px 15px #333; */
+	vertical-align: top;
+
+	position: absolute;
+	/* display: none; */
+	width: calc(66% - 25px);
+	/* padding: 5px; */
+	vertical-align: top;
+	line-height: 1.4em;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	max-height: calc(66% - 37px);
+}
+
+.box_table2 {
+	margin: 0px;
+	margin-top: 4px;
+	padding: 0px;
+	width: calc(33% - 30px);
 }
 
 #runtimecontrol h1 {
