@@ -49,7 +49,8 @@ IO.BehaviorLoader = new (function() {
 		ROS.getPackagePath(manifest.rosnode_name, (package_path) => {
 			ROS.getPackagePythonPath(manifest.rosnode_name, (python_path) => {
 				if (!python_path.startsWith(package_path)) {
-					Behavior.setReadonly(true);
+					T.logInfo('flexbe_app/src/io/io_behaviorloader.js#53 disable Behavior.setReadonly');
+					Behavior.setReadonly(false);
 				}
 				UI.Statemachine.refreshView();
 			});
