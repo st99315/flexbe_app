@@ -159,7 +159,7 @@ UI.Statemachine = new (function() {
 
 	var displayInitialDot = function() {
 		var dummyStateObj = new State("INIT", WS.Statelib.getFromLib(":INIT"));
-		var drawing = R.circle(10, 40, 5)
+		var drawing = R.circle(15, 40, 8)
 				.attr({fill: '#000'})
 				.data("state", dummyStateObj)
 				.data("label", "")

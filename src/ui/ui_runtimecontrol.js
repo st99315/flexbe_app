@@ -439,6 +439,8 @@ UI.RuntimeControl = new (function() {
 		document.getElementById("runtime_waiting_display").style.display = "none";
 		document.getElementById("runtime_offline_display").style.display = "none";
 		document.getElementById("runtime_no_behavior_display").style.display = "none";
+		document.getElementById("button_behavior_start").disabled = false;
+		document.getElementById("button_behavior_start").style.color = "green";
 		ActivityTracer.setUpdateCallback();
 		setDocumentation(undefined);
 		if (R != undefined) {
@@ -731,6 +733,8 @@ UI.RuntimeControl = new (function() {
 	this.displayNoBehavior = function() {
 		hideDisplays();
 		// document.getElementById("runtime_no_behavior_display").style.display = "inline";
+		document.getElementById("button_behavior_start").disabled = true;
+		document.getElementById("button_behavior_start").style.color = "gray";
 		var updateHistoryDisplay = function() {
 			var historyHTML = "";
 			var currentIdx = ActivityTracer.getCurrentIndex();
