@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('input_behavior_filter').addEventListener('keyup', UI.Panels.SelectBehavior.behaviorFilterChanged);
     document.getElementById('input_behavior_package_filter').addEventListener('change', UI.Panels.SelectBehavior.behaviorFilterChanged);
 
+    document.getElementById('log_window').addEventListener('click', UI.Menu.log_window_zoom);
+    document.getElementById('start_window').addEventListener('click', UI.Menu.start_window_zoom);
+
 // Runtime Control
     document.getElementById('button_rc_connect').addEventListener('click', UI.RuntimeControl.connectClicked);
     document.getElementById('button_rc_save').addEventListener('click', UI.Menu.saveBehaviorClicked);

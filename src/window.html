@@ -313,53 +313,56 @@
 
 	<div id="statemachine">
 		<div id="drawing_area" class="box"></div>
-		<div class="box">
-			<table>
-				<tr>
-					<td><input id="button_behavior_start" type="button" value="Start Execution" class="big_button" style="color: green; width: 200px;" /></td>
-					<td align="center"><input id="button_behavior_params_reset" type="button" value="Reset to Default" class="big_button" style="color: red; width: 200px;" /></td>
-				</tr>
-				<tr>
-					<div id="sync_bar" class="loading_bar">
-						<div id="progress_bar"></div>
-						<div id="progress_left"></div>
-						<div id="progress_txt">Sync</div>
-					</div>
-					<div id="sync_extension" style="display: none;"></div>
-
-					<table><tr>
-						<td>
-							<input id="button_behavior_lock" type="button" value="Lock Behavior" class="big_button" style="width: 170px" />
-						</td><td>
-							<table>
-								<tr id="behavior_lock_display">
-								</tr>
-							</table>
-						</td>
-					</tr></table>
-					<br />
-					Block transitions which require at least
-					<select id="selection_rc_autonomy" style="width: 70px; color: blue; font-weight: bold;">
-						<option value="0" style="color: black;">No</option>
-						<option value="1" style="color: blue;" selected="selected">Low</option>
-						<option value="2" style="color: green;">High</option>
-						<option value="3" style="color: red;">Full</option>
-					</select>
-					autonomy.
-					<br /><br />
-					<input id="button_behavior_repeat" type="button" style="width: 100px;" value="Repeat" /> <i>(execute current state again from beginning)</i>
-					<br />
-					<input id="button_behavior_pause" type="button" style="width: 100px;" value="Pause" /> <i>(stay active, but suspend execution)</i>
-					<br /><br />
-					<input id="button_behavior_sync" type="button" value="Sync" style="float: right;" />
-					<input id="cb_allow_preempt" type="checkbox" />
-					<input id="button_behavior_preempt" type="button" value="Stop Execution" style="color: gray;" disabled="disabled" /> <i>(stopped behaviors can't be resumed)</i>
-				</tr>
-			</table>
+		<div class="exbox" id="exbox">
+			<input type="image" id="start_window" style="float: right;" src="img/close.png" width="15px" height="15px"><br>
+			<div id="start_table">
+				<table>
+					<tr>
+						<td><input id="button_behavior_start" type="button" value="Start Execution" class="big_button" style="color: green; width: 200px;" /></td>
+						<td align="center"><input id="button_behavior_params_reset" type="button" value="Reset to Default" class="big_button" style="color: red; width: 200px;" /></td>
+					</tr>
+					<tr>
+						<div id="sync_bar" class="loading_bar">
+							<div id="progress_bar"></div>
+							<div id="progress_left"></div>
+							<div id="progress_txt">Sync</div>
+						</div>
+						<div id="sync_extension" style="display: none;"></div>
+	
+						<table><tr>
+							<td>
+								<input id="button_behavior_lock" type="button" value="Lock Behavior" class="big_button" style="width: 170px" />
+							</td><td>
+								<table>
+									<tr id="behavior_lock_display">
+									</tr>
+								</table>
+							</td>
+						</tr></table>
+						<br />
+						Block transitions which require at least
+						<select id="selection_rc_autonomy" style="width: 70px; color: blue; font-weight: bold;">
+							<option value="0" style="color: black;">No</option>
+							<option value="1" style="color: blue;" selected="selected">Low</option>
+							<option value="2" style="color: green;">High</option>
+							<option value="3" style="color: red;">Full</option>
+						</select>
+						autonomy.
+						<br /><br />
+						<input id="button_behavior_repeat" type="button" style="width: 100px;" value="Repeat" /> <i>(execute current state again from beginning)</i>
+						<br />
+						<input id="button_behavior_pause" type="button" style="width: 100px;" value="Pause" /> <i>(stay active, but suspend execution)</i>
+						<br /><br />
+						<input id="button_behavior_sync" type="button" value="Sync" style="float: right;" />
+						<input id="cb_allow_preempt" type="checkbox" />
+						<input id="button_behavior_preempt" type="button" value="Stop Execution" style="color: gray;" disabled="disabled" /> <i>(stopped behaviors can't be resumed)</i>
+					</tr>
+				</table>
+			</div>			
 		</div>
 		<div class="widebox" style="height: calc(30% - 35px);">
-			<h2>Behavior Feedback</h2>
-			<div id="runtime_feedback_text" style="overflow: auto; line-height: 1.8em; max-height: calc(85% - 30px); -webkit-user-select: text; cursor: text; font-family: monospace;"></div>
+			<h2>Behavior Feedback<input type="image" id="log_window" style="float: right;" src="img/close.png" width="15px" height="15px"></h2>
+			<div id="runtime_feedback_text" style="overflow: auto; line-height: 1.8em; max-height: calc(85% - 30px); -webkit-user-select: text; cursor: text; font-family: monospace; display: inline;"></div>
 		</div>
 	</div>
 

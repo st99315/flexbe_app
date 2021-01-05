@@ -389,4 +389,40 @@ UI.Menu = new (function() {
 		UI.Statemachine.refreshView();
 	}
 
+	this.log_window_zoom = function() {
+		if (document.getElementById('runtime_feedback_text').style.display == "inline")
+		{
+			document.getElementById('runtime_feedback_text').style.display = "none";
+			document.getElementById('log_window').src = "img/add.png";
+			document.getElementById('drawing_area').style.height = "calc(90% - 5px)";
+			UI.Statemachine.recreateDrawingArea();
+			// document.getElementById('widebox').style.height = "calc(7% - 25px)";
+		}else{
+			document.getElementById('runtime_feedback_text').style.display = "inline";
+			document.getElementById('log_window').src = "img/close.png";
+			document.getElementById('drawing_area').style.height = "calc(70% - 20px)";
+			UI.Statemachine.recreateDrawingArea();
+			// document.getElementById('widebox').style.height = "calc(30% - 35px)";
+		}
+	}
+
+	this.start_window_zoom = function() {
+		if (document.getElementById('start_window').style.float == "right")
+		{
+			document.getElementById('start_window').style.float = "left";
+			document.getElementById('log_window').src = "img/add.png";
+			document.getElementById('start_table').style.display = "none";
+			document.getElementById('drawing_area').style.width = "calc(94% - 5px)";
+			document.getElementById('exbox').style.width = "calc(2% - 5px)";
+			UI.Statemachine.recreateDrawingArea();
+		}else{
+			document.getElementById('start_window').style.float = "right";
+			document.getElementById('log_window').src = "img/close.png";
+			document.getElementById('start_table').style.display = "inline";
+			document.getElementById('drawing_area').style.width = "calc(66% - 25px)";
+			document.getElementById('exbox').style.width = "calc(33% - 30px)";
+			UI.Statemachine.recreateDrawingArea();
+		}
+	}
+
 }) ();
