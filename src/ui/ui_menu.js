@@ -390,15 +390,15 @@ UI.Menu = new (function() {
 	}
 
 	this.log_window_zoom = function() {
-		if (document.getElementById('runtime_feedback_text').style.display == "inline")
+		if (document.getElementById('drawing_area').style.height == "calc(70% - 20px)")
 		{
-			document.getElementById('runtime_feedback_text').style.display = "none";
+			// document.getElementById('runtime_feedback_text').style.display = "none";
 			document.getElementById('log_window').src = "img/add.png";
 			document.getElementById('drawing_area').style.height = "calc(90.5%)";
 			UI.Statemachine.recreateDrawingArea();
 			// document.getElementById('widebox').style.height = "calc(7% - 25px)";
 		}else{
-			document.getElementById('runtime_feedback_text').style.display = "inline";
+			// document.getElementById('runtime_feedback_text').style.display = "inline";
 			document.getElementById('log_window').src = "img/close.png";
 			document.getElementById('drawing_area').style.height = "calc(70% - 20px)";
 			UI.Statemachine.recreateDrawingArea();
