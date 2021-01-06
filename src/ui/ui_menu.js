@@ -412,6 +412,7 @@ UI.Menu = new (function() {
 			document.getElementById('start_window').style.float = "left";
 			document.getElementById('start_window').src = "img/add.png";
 			document.getElementById('start_table').style.display = "none";
+			document.getElementById('runtime_state_display').style.display = "none";
 			document.getElementById('drawing_area').style.width = "calc(94% + 10px)";
 			document.getElementById('exbox').style.width = "calc(2% - 10px)";
 			UI.Statemachine.recreateDrawingArea();
@@ -419,6 +420,7 @@ UI.Menu = new (function() {
 			document.getElementById('start_window').style.float = "right";
 			document.getElementById('start_window').src = "img/close.png";
 			document.getElementById('start_table').style.display = "inline";
+			document.getElementById('runtime_state_display').style.display = "inline";
 			document.getElementById('drawing_area').style.width = "calc(66% - 25px)";
 			document.getElementById('exbox').style.width = "calc(33% - 30px)";
 			UI.Statemachine.recreateDrawingArea();

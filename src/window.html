@@ -110,7 +110,7 @@
 		</td><td>
 			<div class="category_button_active" id="button_to_db"><img src="img/db_active.png" width="32" height="32" /> Behavior Dashboard</div>
 			<div class="category_button" id="button_to_sm"><img src="img/sm.png" width="32" height="32" /> Statemachine Editor</div>
-			<div class="category_button" id="button_to_rc" style="display: none;"><img src="img/rc.png" width="32" height="32" /> Runtime Control</div>
+			<div class="category_button" id="button_to_rc" ><img src="img/rc.png" width="32" height="32" /> Runtime Control</div>
 			<div class="category_button" id="button_to_se"><img src="img/se.png" width="32" height="32" /> Configuration</div>
 		</td><td id="title_button_panel">
 
@@ -358,7 +358,8 @@
 						<input id="button_behavior_preempt" type="button" value="Stop Execution" style="color: gray;" disabled="disabled" /> <i>(stopped behaviors can't be resumed)</i>
 					</tr>
 				</table>
-			</div>			
+			</div>
+		<div id="runtime_state_display"></div>
 		</div>
 		<div class="widebox" style="height: calc(30% - 35px);">
 			<h2>Behavior Feedback<input type="image" id="log_window" style="float: right;" src="img/close.png" width="15px" height="15px"></h2>
@@ -366,10 +367,10 @@
 		</div>
 	</div>
 
-	<div id="runtimecontrol" style="display: none;">
+	<div id="runtimecontrol" >
 
-		<div id="runtime_state_display" class="drawbox">
-			<div id="runtime_configuration_display" class="runtimebox_text">
+		<div id="" class="drawbox" >
+			<div id="runtime_configuration_display" class="runtimebox_text" style="display: none;">
 				<h1>Configure Behavior Execution</h1>
 				<font style="color: gray">
 					Set available parameters for execution and start the current behavior.
@@ -387,7 +388,7 @@
 					</tr>
 				</table> -->
 			</div>
-			<div id="runtime_waiting_display" class="runtimebox_text">
+			<div id="runtime_waiting_display" class="runtimebox_text" style="display: none;">
 				<h1>Waiting for Behavior</h1>
 				<div class="rc_font_subtitle">
 					<br /><br /><br />
@@ -395,7 +396,7 @@
 					Now waiting for confirmation from onboard behavior...
 				</div>
 			</div>
-			<div id="runtime_external_display" class="runtimebox_text">
+			<div id="runtime_external_display" class="runtimebox_text" style="display: none;">
 				<h1>External Behavior Running</h1>
 				<font style="color: gray">
 					<br />
@@ -409,7 +410,7 @@
 					</tr>
 				</table>
 			</div>
-			<div id="runtime_offline_display" class="runtimebox_text" style="display: inline;">
+			<div id="runtime_offline_display" class="runtimebox_text"  style="display: none;">
 				<h1>No connection!</h1>
 				<font style="color: gray">
 					You are currently not connected to the onboard behavior engine of the robot.
@@ -435,7 +436,7 @@
 					</li>
 				</ul>
 			</div>
-			<div id="runtime_no_behavior_display" class="runtimebox_text">
+			<div id="runtime_no_behavior_display" class="runtimebox_text"  style="display: none;">
 				<h1>No behavior selected!</h1>
 				<font style="color: gray">
 					In order to start execution of a behavior, you need to have a saved behavior open.
