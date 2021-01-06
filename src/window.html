@@ -110,7 +110,7 @@
 		</td><td>
 			<div class="category_button_active" id="button_to_db"><img src="img/db_active.png" width="32" height="32" /> Behavior Dashboard</div>
 			<div class="category_button" id="button_to_sm"><img src="img/sm.png" width="32" height="32" /> Statemachine Editor</div>
-			<div class="category_button" id="button_to_rc" ><img src="img/rc.png" width="32" height="32" /> Runtime Control</div>
+			<div class="category_button" id="button_to_rc" style="display: none;"><img src="img/rc.png" width="32" height="32" /> Runtime Control</div>
 			<div class="category_button" id="button_to_se"><img src="img/se.png" width="32" height="32" /> Configuration</div>
 		</td><td id="title_button_panel">
 
@@ -348,7 +348,7 @@
 							<option value="3" style="color: red;">Full</option>
 						</select>
 						autonomy.
-						<br /><br />
+						<br />
 						<input id="button_behavior_repeat" type="button" style="width: 100px;" value="Repeat" /> <i>(execute current state again from beginning)</i>
 						<br />
 						<input id="button_behavior_pause" type="button" style="width: 100px;" value="Pause" /> <i>(stay active, but suspend execution)</i>
@@ -367,7 +367,7 @@
 		</div>
 	</div>
 
-	<div id="runtimecontrol" >
+	<div id="runtimecontrol" style="display: none;">
 
 		<div id="" class="drawbox" >
 			<div id="runtime_configuration_display" class="runtimebox_text" style="display: none;">
