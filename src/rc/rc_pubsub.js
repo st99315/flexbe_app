@@ -9,6 +9,7 @@ RC.PubSub = new (function() {
 	var onboard_heartbeat_listener;
 	var ros_command_listener;
 
+	var project_publisher;
 	var behavior_web_publisher;
 	var behavior_start_publisher;
 	var transition_command_publisher;
@@ -167,7 +168,6 @@ RC.PubSub = new (function() {
 	}
 
 	var command_feedback_callback = function (msg) {
-		console.log(msg);
 		if (msg.command == "transition") {
 			if (msg.args[0] == msg.args[1]) {
 				RC.Sync.setProgress("Transition", 0.8, false);
@@ -389,6 +389,10 @@ RC.PubSub = new (function() {
 
 		// Publisher
 
+		project_publisher = new ROS.Publisher(
+			ns + '/flexbe_save/commend',
+			'std_msgs/String');
+
 		behavior_web_publisher = new ROS.Publisher(
 			ns + 'flexbe/web/get_behavior',
 			'std_msgs/String');
@@ -468,6 +472,7 @@ RC.PubSub = new (function() {
 		if (behavior_status_listener) behavior_status_listener.close();
 		if (ros_command_listener) ros_command_listener.close();
 
+		if (project_publisher) project_publisher.close();
 		if (behavior_web_publisher) behavior_web_publisher.close();
 		if (behavior_start_publisher) behavior_start_publisher.close();
 		if (transition_command_publisher) transition_command_publisher.close();
@@ -485,6 +490,12 @@ RC.PubSub = new (function() {
 		if (synthesis_action_client) synthesis_action_client.close();
 	}
 
+	this.project_savecfg = function(data){
+		project_publisher.publish({
+			data: data.toString()
+		});
+	}
+	
 	this.sendBehaviorStart = function(param_keys, param_vals, autonomy) {
 		if (behavior_start_publisher == undefined) { T.debugWarn("ROS not initialized!"); return; }
 		var names = Behavior.createNames();

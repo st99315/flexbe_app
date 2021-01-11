@@ -1017,6 +1017,7 @@ UI.Dashboard = new (function() {
 		);
 
 		Behavior.setBehaviorName(new_name);
+		RC.PubSub.project_savecfg(new_name);
 	}
 
 	this.behaviorPackageChanged = function() {

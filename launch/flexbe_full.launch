@@ -11,4 +11,5 @@
 
 <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch" />
 
+<node pkg="flexbe_app" type="load_project.py" name="flexbe_load_project" />
 </launch>
