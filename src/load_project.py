@@ -11,21 +11,31 @@ import rospy, rospkg
 from std_msgs.msg import String
 
 def init(path):
-    with open(path + '/src/default.json','r') as f:
-        js = json.load(f)
-    class args:
-        pass
-    args.project = str(js["project"])
-    # msg = ""
+    try:
+        with open(path + '/src/default.json','r') as f:
+            js = json.load(f)
+        class args:
+            pass
+        args.project = str(js["project"])
+        # msg = ""
 
-    if args.project == "default":
-        pass
-    else:
-        pub = rospy.Publisher('/flexbe/web/call_bevavior', String, queue_size=0)
-        time.sleep(4)           #wait for flexbe app open
-        msg = args.project
-        pub.publish(msg)
-        pass
+        if args.project == "default":
+            pass
+        else:
+            pub = rospy.Publisher('/flexbe/web/call_bevavior', String, queue_size=0)
+            time.sleep(4)           #wait for flexbe app open
+            msg = args.project
+            pub.publish(msg)
+            pass
+    except Exception as e:
+        args1 = {}
+        args1["project"] = str("default")
+        # args1["project"] = str("default")
+        with open(path + '/src/default.json', 'w') as outfile:
+            json.dump(args1, outfile, indent= 4)
+        with open(path + '/src/default.json','r') as f:
+            js = json.load(f)
+   
 
     return js
 
