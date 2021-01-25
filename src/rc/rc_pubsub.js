@@ -167,6 +167,9 @@ RC.PubSub = new (function() {
 		div_.click();
 	}
 
+	var sync_autonomy_level = function(msg){
+		document.getElementById("selection_rc_autonomy").selectedIndex = parseInt(msg.data);
+	}
 	var command_feedback_callback = function (msg) {
 		if (msg.command == "transition") {
 			if (msg.args[0] == msg.args[1]) {
@@ -386,6 +389,11 @@ RC.PubSub = new (function() {
 			ns + 'flexbe/web/call_bevavior',
 			'std_msgs/String',
 			ros_web_callbvaior);
+
+		sync_autonomy_level_bevavior = new ROS.Subscriber(
+			ns + 'flexbe/command/autonomy',
+			'std_msgs/UInt8',
+			sync_autonomy_level);
 
 		// Publisher
 
