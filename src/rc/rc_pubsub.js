@@ -161,8 +161,9 @@ RC.PubSub = new (function() {
 	}
 
 	var ros_web_callbvaior = function(msg){
-		var load = document.getElementById("button_rc_load");
-		load.click();
+		// var load = document.getElementById("button_rc_load");
+		// load.click();
+		UI.Menu.loadBehaviorClicked();
 		var div_ = document.getElementById(msg.data);
 		div_.click();
 	}

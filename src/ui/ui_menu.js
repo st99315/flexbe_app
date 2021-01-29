@@ -419,8 +419,8 @@ UI.Menu = new (function() {
 		}else{
 			document.getElementById('start_window').style.float = "right";
 			document.getElementById('start_window').src = "img/close.png";
-			document.getElementById('start_table').style.display = "inline";
-			document.getElementById('runtime_state_display').style.display = "inline";
+			document.getElementById('start_table').style.display = "block";
+			document.getElementById('runtime_state_display').style.display = "block";
 			document.getElementById('drawing_area').style.width = "calc(66% - 25px)";
 			document.getElementById('exbox').style.width = "calc(33% - 30px)";
 			UI.Statemachine.recreateDrawingArea();

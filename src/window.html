@@ -359,7 +359,12 @@
 					</tr>
 				</table>
 			</div>
-		<div id="runtime_state_display"></div>
+		<div id="runtime_state_display" style="height: 250px;">
+			<div id="runtime_configuration_display">
+			<table class="box_table" id="rc_parameter_table">
+				<tr><td><i>The selected behavior supports no parameters.</i></td></tr>
+			</table></div>
+		</div>
 		</div>
 		<div class="widebox" style="height: calc(30% - 35px);">
 			<h2>Behavior Feedback<input type="image" id="log_window" style="float: right;" src="img/close.png" width="15px" height="15px"></h2>
@@ -377,9 +382,9 @@
 					You will be able to control execution of the behavior at this page.
 				</font>
 				<br /><br /><br />
-				<table class="box_table" id="rc_parameter_table">
+				<!-- <table class="box_table" id="rc_parameter_table">
 					<tr><td><i>The selected behavior supports no parameters.</i></td></tr>
-				</table>
+				</table> -->
 				<br /><br />
 				<!-- <table class="box_table">
 					<tr>
