@@ -9,6 +9,7 @@ import time
 
 import rospy, rospkg
 from std_msgs.msg import String
+from std_msgs.msg import Empty
 
 def init(path):
     try:
@@ -23,7 +24,7 @@ def init(path):
             pass
         else:
             pub = rospy.Publisher('/flexbe/web/call_bevavior', String, queue_size=0)
-            time.sleep(4)           #wait for flexbe app open
+            time.sleep(1)           #wait for flexbe app open
             msg = args.project
             pub.publish(msg)
             pass
@@ -47,11 +48,15 @@ def save_project(data):
     with open(path + '/src/default.json', 'w') as outfile:
         json.dump(args1, outfile, indent= 4)
 
+def start_init(data):
+    args1 = init(rospack.get_path('flexbe_app'))
+
 rospack = rospkg.RosPack()
 
 
 if __name__ == '__main__' :
     rospy.init_node('flexbe_load_project')
-    args1 = init(rospack.get_path('flexbe_app'))
+    args1 = {}#init(rospack.get_path('flexbe_app'))
+    rospy.Subscriber("/flexbe_open/ready", Empty, start_init)
     rospy.Subscriber("/flexbe_save/commend", String, save_project)
     rospy.spin()

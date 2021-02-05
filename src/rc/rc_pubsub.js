@@ -10,6 +10,7 @@ RC.PubSub = new (function() {
 	var ros_command_listener;
 
 	var project_publisher;
+	var ready_publisher;
 	var behavior_web_publisher;
 	var behavior_start_publisher;
 	var transition_command_publisher;
@@ -28,6 +29,7 @@ RC.PubSub = new (function() {
 
 	var last_heartbeat_time = undefined;
 	var expected_sync_path = undefined;
+	var start_flag = true;
 
 	var current_state_callback = function (msg) {
 		if (RC.Sync.hasProcess("Transition")) RC.Sync.remove("Transition");
@@ -402,6 +404,10 @@ RC.PubSub = new (function() {
 			ns + '/flexbe_save/commend',
 			'std_msgs/String');
 
+		ready_publisher = new ROS.Publisher(
+			ns + '/flexbe_open/ready',
+			'std_msgs/Empty');
+
 		behavior_web_publisher = new ROS.Publisher(
 			ns + 'flexbe/web/get_behavior',
 			'std_msgs/String');
@@ -482,6 +488,7 @@ RC.PubSub = new (function() {
 		if (ros_command_listener) ros_command_listener.close();
 
 		if (project_publisher) project_publisher.close();
+		if (ready_publisher) ready_publisher.close();
 		if (behavior_web_publisher) behavior_web_publisher.close();
 		if (behavior_start_publisher) behavior_start_publisher.close();
 		if (transition_command_publisher) transition_command_publisher.close();
@@ -681,6 +688,13 @@ RC.PubSub = new (function() {
 
 	this.DEBUG_synthesis_action_result_callback = function(result, root) {
 		synthesis_action_result_callback(result, root);
+	}
+
+	this.sendReady = function(){
+		if(start_flag == true){
+			start_flag = false;
+			ready_publisher.publish();
+		}
 	}
 
 }) ();

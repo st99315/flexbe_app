@@ -44,7 +44,7 @@ RC.Controller = new (function() {
 			UI.RuntimeControl.displayNoBehavior();
 			RC.Sync.setStatus("ROS", RC.Sync.STATUS_OK);
 			RC.Sync.setProgress("ROS", 1, false);
-
+			RC.PubSub.sendReady();
 			RC.Sync.register("Delay", 50);
 		},
 		onExit: function() { },
