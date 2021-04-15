@@ -50,6 +50,19 @@ def save_project(data):
 
 def start_init(data):
     args1 = init(rospack.get_path('flexbe_app'))
+    get_states_list()
+
+def get_states_list():
+    statelib = []
+    state_path = rospack.get_path('solomon_flexbe_states')
+    statelist = os.listdir(state_path + '/src/solomon_flexbe_states/')
+    for files in statelist:
+        filename = files.split('.')
+        if len(filename) > 1 and filename[0]!='__init__':
+            statelib.append(filename[0])
+            # print(filename)
+
+    rospy.set_param("/statelib",statelib)
 
 rospack = rospkg.RosPack()
 
