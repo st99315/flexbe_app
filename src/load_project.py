@@ -58,7 +58,7 @@ def get_states_list():
     state_path = rospack.get_path('solomon_flexbe_states')
     statelist = os.listdir(state_path + '/src/solomon_flexbe_states/')
     for files in statelist:
-        filename = files.split('.')
+        filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
             # print(filename)
@@ -67,7 +67,7 @@ def get_states_list():
     state_path = rospack.get_path('flexbe_states')
     statelist = os.listdir(state_path + '/src/flexbe_states/')
     for files in statelist:
-        filename = files.split('.')
+        filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
 
@@ -75,7 +75,7 @@ def get_states_list():
     state_path = rospack.get_path('flexbe_manipulation_states')
     statelist = os.listdir(state_path + '/src/flexbe_manipulation_states/')
     for files in statelist:
-        filename = files.split('.')
+        filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
 
@@ -83,7 +83,7 @@ def get_states_list():
     state_path = rospack.get_path('flexbe_navigation_states')
     statelist = os.listdir(state_path + '/src/flexbe_navigation_states/')
     for files in statelist:
-        filename = files.split('.')
+        filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
 
@@ -91,7 +91,7 @@ def get_states_list():
     state_path = rospack.get_path('flexbe_utility_states')
     statelist = os.listdir(state_path + '/src/flexbe_utility_states/')
     for files in statelist:
-        filename = files.split('.')
+        filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
 
