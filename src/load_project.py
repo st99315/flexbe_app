@@ -50,7 +50,7 @@ def save_project(data):
 
 def start_init(data):
     args1 = init(rospack.get_path('flexbe_app'))
-    get_states_list()
+    # get_states_list()
 
 def get_states_list():
     statelib = []
@@ -61,7 +61,8 @@ def get_states_list():
         filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
-            # print(filename)
+    rospy.set_param("/statelib/solomon_flexbe_states",statelib)
+    statelib = []
 
     # states in flexbe_states
     state_path = rospack.get_path('flexbe_states')
@@ -70,6 +71,8 @@ def get_states_list():
         filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
+    rospy.set_param("/statelib/flexbe_states",statelib)
+    statelib = []
 
     # states in flexbe_manipulation_states
     state_path = rospack.get_path('flexbe_manipulation_states')
@@ -78,6 +81,8 @@ def get_states_list():
         filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
+    rospy.set_param("/statelib/flexbe_manipulation_states",statelib)
+    statelib = []
 
     # states in flexbe_navigation_states
     state_path = rospack.get_path('flexbe_navigation_states')
@@ -86,6 +91,8 @@ def get_states_list():
         filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
+    rospy.set_param("/statelib/flexbe_navigation_states",statelib)
+    statelib = []
 
     # states in flexbe_utility_states
     state_path = rospack.get_path('flexbe_utility_states')
@@ -94,8 +101,7 @@ def get_states_list():
         filename = files.split('.py')
         if len(filename) > 1 and filename[0]!='__init__':
             statelib.append(filename[0])
-
-    rospy.set_param("/statelib",statelib)
+    rospy.set_param("/statelib/flexbe_utility_states",statelib)
 
 rospack = rospkg.RosPack()
 
@@ -103,6 +109,7 @@ rospack = rospkg.RosPack()
 if __name__ == '__main__' :
     rospy.init_node('flexbe_load_project')
     args1 = {}#init(rospack.get_path('flexbe_app'))
+    get_states_list()
     rospy.Subscriber("/flexbe_open/ready", Empty, start_init)
     rospy.Subscriber("/flexbe_save/commend", String, save_project)
     rospy.spin()
