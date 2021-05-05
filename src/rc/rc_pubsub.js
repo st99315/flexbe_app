@@ -184,6 +184,9 @@ RC.PubSub = new (function() {
 	var sync_autonomy_level = function(msg){
 		document.getElementById("selection_rc_autonomy").selectedIndex = parseInt(msg.data);
 	}
+	var close_ui = function(msg){
+		window.close();
+	}
 	var command_feedback_callback = function (msg) {
 		if (msg.command == "transition") {
 			if (msg.args[0] == msg.args[1]) {
@@ -413,6 +416,12 @@ RC.PubSub = new (function() {
 			ns + 'flexbe/web/dashboard',
 			'std_msgs/String',
 			ros_dashboard_value);
+
+		ros_window_closw = new ROS.Subscriber(
+			ns + 'flexbe/close',
+			'std_msgs/Empty',
+			close_ui);
+
 		// Publisher
 
 		project_publisher = new ROS.Publisher(
