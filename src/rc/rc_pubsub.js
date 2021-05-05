@@ -170,6 +170,17 @@ RC.PubSub = new (function() {
 		div_.click();
 	}
 
+	var ros_dashboard_value = function(msg){
+		var msgAry = msg.data.split(',');
+		if(msgAry[0] == "BehaviorParameter") {
+			Behavior.updateBehaviorParameter(msgAry[1], msgAry[2], msgAry[3]);
+		}else if(msgAry[0] == "PrivateVariables") {
+			Behavior.updatePrivateVariables(msgAry[1], msgAry[2], msgAry[3]);
+		}else if(msgAry[0] == "Userdata") {
+			Behavior.updateDefaultUserdata(msgAry[1], msgAry[2], msgAry[3]);
+		}
+		UI.Menu.saveBehaviorClicked();
+	}
 	var sync_autonomy_level = function(msg){
 		document.getElementById("selection_rc_autonomy").selectedIndex = parseInt(msg.data);
 	}
@@ -398,6 +409,10 @@ RC.PubSub = new (function() {
 			'std_msgs/UInt8',
 			sync_autonomy_level);
 
+		ros_bevavior_st = new ROS.Subscriber(
+			ns + 'flexbe/web/dashboard',
+			'std_msgs/String',
+			ros_dashboard_value);
 		// Publisher
 
 		project_publisher = new ROS.Publisher(
