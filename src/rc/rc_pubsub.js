@@ -184,8 +184,9 @@ RC.PubSub = new (function() {
 	var sync_autonomy_level = function(msg){
 		document.getElementById("selection_rc_autonomy").selectedIndex = parseInt(msg.data);
 	}
-	var close_ui = function(msg){
-		window.close();
+	var forceDiscover = function(msg){
+		UI.Settings.forceDiscoverClicked();
+		// ros_web_callbvaior(msg);
 	}
 	var command_feedback_callback = function (msg) {
 		if (msg.command == "transition") {
@@ -412,15 +413,15 @@ RC.PubSub = new (function() {
 			'std_msgs/UInt8',
 			sync_autonomy_level);
 
-		ros_bevavior_st = new ROS.Subscriber(
+		ros_bevavior_string = new ROS.Subscriber(
 			ns + 'flexbe/web/dashboard',
 			'std_msgs/String',
 			ros_dashboard_value);
 
-		ros_window_closw = new ROS.Subscriber(
-			ns + 'flexbe/close',
-			'std_msgs/Empty',
-			close_ui);
+		ros_bevavior_forceDiscover = new ROS.Subscriber(
+			ns + 'flexbe/forceDiscover',
+			'std_msgs/String',
+			forceDiscover);
 
 		// Publisher
 
