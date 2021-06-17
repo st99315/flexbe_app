@@ -10,9 +10,11 @@ RC.PubSub = new (function() {
 	var ros_command_listener;
 
 	var project_publisher;
+	var project_loader;
 	var ready_publisher;
 	var behavior_web_publisher;
 	var behavior_start_publisher;
+
 	var transition_command_publisher;
 	var autonomy_level_publisher;
 	var preempt_behavior_publisher;
@@ -188,6 +190,11 @@ RC.PubSub = new (function() {
 		UI.Settings.forceDiscoverClicked();
 		// ros_web_callbvaior(msg);
 	}
+
+	var forceLoad = function(msg){
+		UI.RuntimeControl.forceLoadControl();
+	}
+
 	var command_feedback_callback = function (msg) {
 		if (msg.command == "transition") {
 			if (msg.args[0] == msg.args[1]) {
@@ -423,7 +430,16 @@ RC.PubSub = new (function() {
 			'std_msgs/String',
 			forceDiscover);
 
+		ros_behavior_prj_loader = new ROS.Subscriber(
+			ns + 'flexbe/forceLoad',
+			'std_msgs/String',
+			forceLoad);
+
 		// Publisher
+		
+		project_loader = new ROS.Publisher(
+			ns + '/flexbe/prj_loader',
+			'flexbe_msgs/BehaviorRequest');
 
 		project_publisher = new ROS.Publisher(
 			ns + '/flexbe_save/commend',
@@ -513,6 +529,7 @@ RC.PubSub = new (function() {
 		if (ros_command_listener) ros_command_listener.close();
 
 		if (project_publisher) project_publisher.close();
+		if (project_loader) project_coba.close();
 		if (ready_publisher) ready_publisher.close();
 		if (behavior_web_publisher) behavior_web_publisher.close();
 		if (behavior_start_publisher) behavior_start_publisher.close();
@@ -559,7 +576,34 @@ RC.PubSub = new (function() {
 				arg_values: param_vals,
 				structure: behavior_structure
 			});
+			
+			// console.log(behavior_structure);
 			RC.Sync.setProgress("BehaviorStart", 0.2, false);
+		});
+	}
+
+	this.forceLoadBehaviorStart = function(param_keys, param_vals, autonomy) {
+		if (behavior_start_publisher == undefined) { T.debugWarn("ROS not initialized!"); return; }
+		var names = Behavior.createNames();
+		IO.BehaviorPacker.loadBehaviorCode(function(code) {
+			// RC.Controller.signalStarted();
+			// RC.Sync.register("BehaviorStart", 60);
+
+			var behavior_structure = undefined;
+			try {
+				behavior_structure = Behavior.createStructureInfo();
+			} catch (error) {
+				T.logError("Failed to construct behavior structure, execution might fail: " + error);	
+			}
+
+			project_loader.publish({
+				behavior_name: Behavior.getBehaviorName(),
+				autonomy_level: autonomy,
+				arg_keys: param_keys,
+				arg_values: param_vals,
+				structure: behavior_structure
+			});
+			// RC.Sync.setProgress("BehaviorStart", 0.2, false);
 		});
 	}
 

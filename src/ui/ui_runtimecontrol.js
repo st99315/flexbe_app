@@ -527,6 +527,23 @@ UI.RuntimeControl = new (function() {
 		});
 	}
 
+	this.forceLoadControl = function() {
+		console.log("Parsing parameter values...");
+		parseParameterConfig(function (result) {
+			console.log(result);
+			console.log("Got parameter values, starting behavior...");
+			param_keys = [];
+			param_vals = [];
+			result.forEach(function (r) {
+				param_keys.push("/" + r.name);
+				param_vals.push("" + r.value);
+			});
+			var selection_box = document.getElementById("selection_rc_autonomy");
+			var autonomy_value = parseInt(selection_box.options[selection_box.selectedIndex].value);
+			RC.PubSub.forceLoadBehaviorStart(param_keys, param_vals, autonomy_value);
+		});
+	}
+
 	this.attachExternalClicked = function() {
 		var selection_box = document.getElementById("selection_rc_autonomy");
 		var autonomy_level = parseInt(selection_box.options[selection_box.selectedIndex].value);
