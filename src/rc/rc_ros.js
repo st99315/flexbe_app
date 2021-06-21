@@ -23,6 +23,7 @@ RC.ROS = new (function() {
 
 		UI.Settings.setRosProperties(namespace);
 		RC.PubSub.initialize(namespace);
+		RC.PubSub.startAutomaticProcess(namespace);
 	}
 
 	this.trySetupConnection = function() {

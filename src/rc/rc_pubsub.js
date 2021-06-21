@@ -33,6 +33,9 @@ RC.PubSub = new (function() {
 	var expected_sync_path = undefined;
 	var start_flag = true;
 
+	var current_status;
+	var current_status_publisher;
+
 	var current_state_callback = function (msg) {
 		if (RC.Sync.hasProcess("Transition")) RC.Sync.remove("Transition");
 		//if (expected_sync_path != undefined && RC.Sync.hasProcess("Sync") && expected_sync_path == msg.data) RC.Sync.remove("Sync");
@@ -505,7 +508,53 @@ RC.PubSub = new (function() {
 
 		// Action Clients
 		if (UI.Settings.isSynthesisEnabled()) that.initializeSynthesisAction(ns);
+
+		// Automatic process
+		
 	}
+
+	var publishers = "off";
+	
+	var current_status = function(msg){
+		console.log(RC.Controller.isActive(), RC.Controller.isRunning());
+		current_status_publisher.publish({
+			data:RC.Controller.isActive().toString()
+		});
+	}
+
+	
+	var check_publisher_active = function(msg) {
+		check_publisher_active_pub.publish({
+			data:publishers.toString()
+		});
+	}
+
+	this.startAutomaticProcess = function(ns){
+		if (!ns.startsWith('/')) ns = '/' + ns;
+		if (!ns.endsWith('/')) ns += '/';
+
+		// Publisher
+		current_status_publisher = new ROS.Publisher(
+			ns + 'flexbe_status/ready',
+			'std_msgs/String');
+
+		check_publisher_active_pub = new ROS.Publisher(
+			ns + 'flexbe_status/status_publisher',
+			'std_msgs/String');
+		
+
+		// Subscriber
+		current_status_subscriber = new ROS.Subscriber(
+			ns + 'flexbe_status/status',
+			'std_msgs/String',
+			current_status);
+		
+		check_publisher_active_sub = new ROS.Subscriber(
+			ns + 'flexbe_status/check_publisher',
+			'std_msgs/String',
+			check_publisher_active);
+	}
+
 
 	this.initializeSynthesisAction = function(ns) {
 		var topic = UI.Settings.getSynthesisTopic();
@@ -531,6 +580,7 @@ RC.PubSub = new (function() {
 		if (project_publisher) project_publisher.close();
 		if (project_loader) project_coba.close();
 		if (ready_publisher) ready_publisher.close();
+		if (current_status_publisher) current_status_publisher.close();
 		if (behavior_web_publisher) behavior_web_publisher.close();
 		if (behavior_start_publisher) behavior_start_publisher.close();
 		if (transition_command_publisher) transition_command_publisher.close();
@@ -580,6 +630,10 @@ RC.PubSub = new (function() {
 			// console.log(behavior_structure);
 			RC.Sync.setProgress("BehaviorStart", 0.2, false);
 		});
+	}
+
+	this.statusBehavior = function(params) {
+		
 	}
 
 	this.forceLoadBehaviorStart = function(param_keys, param_vals, autonomy) {
